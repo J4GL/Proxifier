@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Proxifier Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Proxifier Settings</h1>
+        
+        <div class="section">
+            <h2>Proxy Configuration</h2>
+            <p>Proxy is automatically enabled when domains are in the list below.</p>
+            
+            <div class="input-group">
+                <label for="proxyHost">Proxy Host:</label>
+                <input type="text" id="proxyHost" placeholder="Enter proxy host">
+            </div>
+            
+            <div class="input-group">
+                <label for="proxyPort">Proxy Port:</label>
+                <input type="number" id="proxyPort" placeholder="1080">
+            </div>
+            
+            <div class="input-group">
+                <label for="proxyType">Proxy Type:</label>
+                <select id="proxyType">
+                    <option value="socks5">SOCKS5</option>
+                    <option value="http">HTTP</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Target Websites</h2>
+            <p>Enter top-level domains. All subdomains will be included automatically.</p>
+            <div class="input-group">
+                <label for="websites">Websites (one per line):</label>
+                <textarea id="websites" rows="5" placeholder="example.com (includes www.example.com, api.example.com, etc.)&#10;google.com (includes maps.google.com, drive.google.com, etc.)&#10;github.com"></textarea>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button id="save">Save Settings</button>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+</html>
