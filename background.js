@@ -199,3 +199,37 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   }
 });
 
+chrome.action.onClicked.addListener(async (tab) => {
+  const config = await getProxyConfig();
+  
+  // If no proxy is configured, open options page
+  if (!config.proxyHost) {
+    chrome.runtime.openOptionsPage();
+    return;
+  }
+  
+  // Otherwise, toggle the current domain
+  const domain = extractDomain(tab.url);
+  if (!domain) {
+    console.log('Cannot get domain from this page');
+    return;
+  }
+  
+  const websites = [...config.websites];
+  const domainIndex = websites.indexOf(domain);
+  
+  if (domainIndex > -1) {
+    websites.splice(domainIndex, 1);
+    console.log(`Removed ${domain} from proxy list`);
+  } else {
+    websites.push(domain);
+    console.log(`Added ${domain} to proxy list`);
+  }
+  
+  // Save the updated configuration
+  await chrome.storage.sync.set({ ...config, websites });
+  
+  // Update icon for the current tab
+  await updateIcon(tab);
+});
+

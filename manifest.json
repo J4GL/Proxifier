@@ -19,8 +19,7 @@
   },
   "options_page": "options.html",
   "action": {
-    "default_popup": "popup.html",
-    "default_title": "Proxifier - Click to view domain status and access settings",
+    "default_title": "Proxifier - Click to toggle proxy for this website",
     "default_icon": {
       "16": "icons/proxy_off_16.png",
       "48": "icons/proxy_off_48.png",
